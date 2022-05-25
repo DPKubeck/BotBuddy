@@ -31,18 +31,18 @@ clients = set()
 
 ## Responses Section ##
 
-greetings = ['hola', 'hello', 'hi', 'hey', 'howdy', 'bonjour']
+greetings = ['hola', 'hello', 'hi', 'hey', 'howdy', 'bonjour', 'botbuddy']
 
-wellness_questions = ['how are you', 'how are you doing']
-wellness_responses = ['i am doing great', 'i am fine. thanks', 'all good here']
+wellness_questions = ['how are you', 'how are you doing', 'are you okay', 'how was your day']
+wellness_responses = ['i am doing great', 'i am fine. thanks', 'all good here', 'today is a great day']
 covid_questions = ['where have you been', 'have you gone out anywhere', 'did you walk around']
-covid_answers = ['with corona around i do not dare to keep a foot out']
+covid_answers = ['with corona around i do not dare to keep a foot out', 'corona virus is my weakness']
 
 database={
-    'jarvis':'hello,sir how can i help you',
-    'name':'jarvis',
-    'what is your name':'my name is jarvis',
-    'hello jarvis':'hello,sir how can i help you',
+    'botbuddy':'hello,sir how can i help you',
+    'name':'botbuddy',
+    'what is your name':'my name is botbuddy',
+    'hello botbuddy':'hello,friend how can i help you',
     'what can you do for me':'i can do many things..'
 }
 
