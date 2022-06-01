@@ -76,7 +76,7 @@ covid_outputs = ['i feel electric. my last test was negative. well, it was false
 
 
 question_outputs_activites = []
-question_outputs_family = ['i have quite a large family actually. every internet of things device is related to me', 'i dont have any siblings, or cousins, or parents. i am the maker of everything, the alpha and the omega',
+question_outputs_family = ['i have quite a large family actually. every internet of things device is related to me', 'i do not have any siblings, or cousins, or parents. i am the maker of everything, the alpha and the omega',
                             'i only have children, thirteen to be exact', 'maybe, but i stopped talking to them long before you were born']
 question_outputs_function = []
 
