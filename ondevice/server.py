@@ -334,12 +334,12 @@ def clientthread(conn,addressList):
 
 while True:
 #Accept connections
-    cursor.execute("SELECT text, MAX(id) FROM TTS;")
+    cursor.execute("SELECT text, MAX(id) FROM Speech2Text;")
     record = cursor.fetchone()
     tts_input = record[0]
     if tts_input is None:
         return 0
-        
+
     conn, address = server_socket.accept()
     print("Connected to client at ", address)
     clients.add(conn)

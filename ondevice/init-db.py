@@ -15,7 +15,7 @@ cursor.execute("DROP TABLE IF EXISTS STT;")
  
 try:
   cursor.execute("""
-    CREATE TABLE STT (
+    CREATE TABLE Speech2Text (
       id          integer  AUTO_INCREMENT PRIMARY KEY,
       text        VARCHAR(50) NOT NULL,  
       time        TIMESTAMP

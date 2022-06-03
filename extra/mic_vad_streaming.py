@@ -206,7 +206,7 @@ def main(ARGS):
                 wav_data = bytearray()
             text = stream_context.finishStream()
             print("Recognized: %s" % text)
-            query = "INSERT INTO STT (text) VALUES (%s)"
+            query = "INSERT INTO Speech2Text (text) VALUES (%s)"
             values = [
                 (text)
             ]
