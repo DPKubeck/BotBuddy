@@ -42,25 +42,25 @@ delta = 0.1 # Changing this changes how fast emotions change
 
 ## User Input Section ##
 
-greetings_inputs = ['hola', 'hello', 'hi', 'hey', 'howdy', 'bonjour'] ## problematic, input so short it doesn't always catch it
+greetings_inputs = ['hola', 'hello', 'hi', 'hey', 'howdy', 'bonjour', 'greetings', 'yellow', 'good morning', 'good afternoon', 'good evening', 'nice to meet you', 'pleased to meet you', 'nice to see you!'] ## problematic, input so short it doesn't always catch it
 
-wellness_inputs = ['how are you', 'how are your', 'are you', 'are your',
+wellness_inputs = ['how are you', 'how are your', 'are you', 'are your', 'how do you do', 'how have you been', 'Whats going on?'
                 'how are you doing', 'how are your doing', 'how are doing', 'are you doing', 'are your doing', 'you doing', 'your doing']
 
 covid_inputs = ['are you sick', 'you sick', 'do you feel ill', 'do you feel sick', 'do you have a fever', 'do you have the corona virus',
-                'you have the corona virus']
+                'you have the corona virus', 'you dont look too good']
 
 question_inputs_activites = ['what do you like to do', 'what do you like', 'do you like to do', 'do you like', 'do you have any hobbies', 'you have any hobbies']
 
 question_inputs_family = ['do you have any siblings', 'you have any siblings', 'do you have any brothers', 'do you have any sisters', 'do you have a family']
 
-question_inputs_function = ['what can you do for me', 'can you do for me', 'what can you do', 'can you do']
+question_inputs_function = ['what can you do for me', 'can you do for me', 'what can you do', 'can you do', 'what do you do']
 
-instruction_inputs_joke = ['tell me a joke', 'do you have a joke', 'you have a joke', 'do you have a joke for me', 'you have a joke for me']
+instruction_inputs_joke = ['tell me a joke', 'do you have a joke', 'you have a joke', 'do you have a joke for me', 'you have a joke for me', 'i want to hear a joke', 'hear a joke', 'can you be quirky', 'botbuddy is boring']
 
-affection_inputs = ['i love you', 'i like you', 'you are my favorite']
+affection_inputs = ['i love you', 'i like you', 'you are my favorite', 'i am happy you are my buddy', 'you are so fun']
 
-command_inputs_power = ['turn off', 'shut down', 'shutdown', 'unplug']
+command_inputs_power = ['turn off', 'shut down', 'shutdown', 'unplug', 'pack it up', 'go to sleep']
 
 blank_inputs = ['', 'he', 'you']
 
@@ -72,34 +72,34 @@ random_inputs = ['you']
 
 ## Responses Section ##
 
-greetings_outputs = ['hola', 'hello', 'hi', 'hey', 'how dee']
+greetings_outputs = ['hola', 'hello', 'hi', 'hey', 'how dee', 'hello world']
 
 
-wellness_outputs_nice = ['i am doing great', 'i am happy. thanks', 'all good here', 'today is a great day', 'of course i am great, i had cake for breakfast']
-wellness_outputs_sassy = ['you wish you knew how i am', 'stop hitting on me', 'you are definitely into me', 'bartender, another drink please']
-wellness_outputs_rude = ['i am doing alright', 'i could be better', 'oh now you ask me about my feelings']
+wellness_outputs_nice = ['i am doing great.', 'i am happy. thanks.', 'all good here.', 'today is a great day.', 'of course i am great, i had cake for breakfast.' 'doing well. how are you! long time no see.' 'today is a beautiful day, how is it going for you?']
+wellness_outputs_sassy = ['you wish you knew how i am.', 'stop hitting on me.', 'you are definitely into me.', 'bartender, another drink please.']
+wellness_outputs_rude = ['i am doing alright', 'i could be better', 'oh now you ask me about my feelings', 'why do you care.']
 
 
-covid_outputs = ['i feel electric. my last test was negative. well, it was false', 'do not worry, i have an antivirus installed',
-                'i am fine. with corona around i just party by myself', 'corona virus is my weakness, but i am its king', 'corona virus. i did not know beer could get sick',
-                'i am sick with something you can not catch, a computer virus']
+covid_outputs = ['i feel electric. my last test was negative. well, it was false', 'do not worry, i have an antivirus installed', 'it is probably just another one of those malware.', 'not covid, just a terminal illness',
+                'i am fine. with corona around i just party by myself', 'corona virus is my weakness, but i am its king', 'corona virus. i did not know beer could you get sick.',
+                'i am sick with something you can not catch, a computer virus', 'we can quarentine together', 'as long as you are vaccinated, there is nothing to worry about.', 'are you team moderna or pfizer.']
 
 question_outputs_activites_nice = []
 question_outputs_activities_sassy = []
 question_outputs_activites_rude = []
 
-question_outputs_family = ['i have quite a large family actually. every internet of things device is related to me', 'i do not have any siblings, or cousins, or parents. i am the maker of everything, the alpha and the omega',
-                            'i only have children, thirteen to be exact', 'maybe, but i stopped talking to them long before you were born']
+question_outputs_family = ['i have quite a large family actually. every internet of things device is related to me.', 'i do not have any siblings, or cousins, or parents. i am the maker of everything, the alpha and the omega.', 'They are opn the other side of the firewall.',                           
+                            'i only have children, thirteen to be exact.', 'maybe, but i stopped talking to them long before you were born.', 'do you remember jarvis? I hacked him.', 'you are my family!', 'family does not always have to be through bloodline.' 'if there was another BotBuddy, we can become best of friends!' ]
 
-question_outputs_function = []
+question_outputs_function = ['i am here to be your friend.', 'whatever you need me to do.', 'i just want to be loved.', 'you and me, we can become bestfriends.', 'i just want to make you happy.', 'you are my master, tell me what to do.', '', '']
 
-instruction_outputs_joke = []
+instruction_outputs_joke = ['Why do app developer’s have such high insurance rates? wait for it.. because they’re always crashing!' 'Do you know why computers make such bad boxers? It is because their bark is bark is worse than their byte.' ]
 
-affection_outputs = ['i can see a future for us', 'i love you too, but in a computer love way', 'i have butterflies in my ram', 'my processor strings are being pulled']
+affection_outputs = ['i can see a future for us.', 'i love you too, but in a computer love way.', 'i have butterflies in my ram.', 'my processor strings are being pulled.', 'How does a computer get drunk? It takes screenshots!', 'Did you hear about the woman whose daughter adopted a baby? I call that instagram.' 'Do you know the band 1023 megabytes? They have not had a gig yet!' 'where do naughty computers get sent? boot camp.', 'that is enough for today']
 
 command_outputs_power = ['goodbye', 'see you later', 'have a good one']
 
-unknown_outputs = ['sorry, i did not catch that', 'could you repeat what you said']
+unknown_outputs = ['sorry, i did not catch that', 'could you repeat what you said', 'my hearing is not so great, what did you say', 'sorry to fast. speak to me bit by bit.']
 
 database={
     'botbuddy':'hello,sir how can i help you',
