@@ -11,13 +11,13 @@ db_name = os.environ['MYSQL_DATABASE']
 
 db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
 cursor = db.cursor()
-cursor.execute("DROP TABLE IF EXISTS STT;")
+cursor.execute("DROP TABLE IF EXISTS Speech2Text;")
  
 try:
   cursor.execute("""
     CREATE TABLE Speech2Text (
-      id          integer  AUTO_INCREMENT PRIMARY KEY,
-      text        VARCHAR(50) NOT NULL,  
+      id          integer AUTO_INCREMENT PRIMARY KEY,
+      text        VARCHAR(255),
       time        TIMESTAMP
     );
   """)

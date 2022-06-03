@@ -338,7 +338,7 @@ while True:
     record = cursor.fetchone()
     tts_input = record[0]
     if tts_input is None:
-        return 0
+        do_nothing = 0
 
     conn, address = server_socket.accept()
     print("Connected to client at ", address)
