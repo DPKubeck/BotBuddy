@@ -6,6 +6,19 @@ import datetime
 import random
 import requests
 import os
+import mysql.connector as mysql
+from dotenv import load_dotenv
+
+load_dotenv('credentials.env')
+ 
+''' Environment Variables '''
+db_host = os.environ['MYSQL_HOST']
+db_user = os.environ['MYSQL_USER']
+db_pass = os.environ['MYSQL_PASSWORD']
+db_name = os.environ['MYSQL_DATABASE']
+
+db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+cursor = db.cursor(buffered=True)
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
@@ -321,6 +334,12 @@ def clientthread(conn,addressList):
 
 while True:
 #Accept connections
+    cursor.execute("SELECT text, MAX(id) FROM TTS;")
+    record = cursor.fetchone()
+    tts_input = record[0]
+    if tts_input is None:
+        return 0
+        
     conn, address = server_socket.accept()
     print("Connected to client at ", address)
     clients.add(conn)
