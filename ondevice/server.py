@@ -360,20 +360,31 @@ while True:
         PERMANENT_RUDE = 0
         PERMANENT_DYNAMIC = 0
         first_startup = 1
+        input_tracker = 0
+        tts_old = ''
     else:
         cursor.execute("SELECT text, MAX(id) FROM Speech2Text;")
         record = cursor.fetchone()
         tts_input = record[0]
         if tts_input is None:
             do_nothing = 0
-
+        elif(tts_input == tts_old):
+            do_nothing = 0
+        elif(hex(id(tts_input)) == hex(id(tts_old))):
+            do_nothing = 0
+        else:
+            input_tracker = input_tracker + 1
+            tts_old = tts_input
+            
+            print(tts_input)
+            chatback(tts_input)
         #conn, address = server_socket.accept()
         #print("Connected to client at ", address)
         #clients.add(conn)
     #Creat new thread for client connections
         #_thread.start_new_thread(clientthread,(conn,addressList))
         
-        chatback('i love you')
+        #chatback('tell me a joke')
         
 
 conn.close()
