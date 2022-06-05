@@ -8,6 +8,7 @@ import requests
 import os
 import mysql.connector as mysql
 from dotenv import load_dotenv
+from polly import Polly
 
 load_dotenv('credentials.env')
  
@@ -41,16 +42,18 @@ addressList = []
 clients = set()
 
 ## Emotion Weights Initialization ##
-PERMANENT_NICE = 0 # Input these from settings file
-PERMANENT_SASSY = 0
-PERMANENT_RUDE = 0
-PERMANENT_DYNAMIC = 0
+#PERMANENT_NICE = 0 # Input these from settings file
+#PERMANENT_SASSY = 0
+#PERMANENT_RUDE = 0
+#PERMANENT_DYNAMIC = 0
 
-weight_nice = 0
-weight_rude = 0
-weight_sassy = 0
+#weight_nice = 0
+#weight_rude = 0
+#weight_sassy = 0
 
-delta = 0.1 # Changing this changes how fast emotions change
+#delta = 0.1 # Changing this changes how fast emotions change
+
+first_startup = 0
 
 
 ## User Input Section ##
@@ -126,6 +129,9 @@ print("Listening for client ..........")
 
 ## Chat code processing ##
 def chatback(data):
+    global weight_nice, weight_sassy, weight_rude, delta
+    global PERMANENT_NICE, PERMANENT_SASSY, PERMANENT_RUDE, PERMANENT_DYNAMIC
+    
     ## Direct input-to-response section
     if data in blank_inputs:
         pass
@@ -215,9 +221,10 @@ def chatback(data):
         say(random_function)
     
     elif data in instruction_inputs_joke:
-        random_function = random.choice(instruction_outputs_joke)
+        print('joke\n')
+        random_joke = random.choice(instruction_outputs_joke)
         weight_sassy = weight_sassy + delta
-        say(random_function)
+        say(random_joke)
 
     elif data in affection_inputs:
         random_affection = random.choice(affection_outputs)
@@ -255,6 +262,7 @@ def chatback(data):
         say(random_covid)
 
     elif 'joke' in data: ## Joke fallback statement
+        print('joke 2\n')
         random_function = random.choice(instruction_outputs_joke)
         weight_sassy = weight_sassy + delta
         say(random_function)
@@ -272,6 +280,9 @@ def chatback(data):
 
 
 def say(response):
+    global weight_nice, weight_sassy, weight_rude, delta
+    global PERMANENT_NICE, PERMANENT_SASSY, PERMANENT_RUDE, PERMANENT_DYNAMIC
+    
     # Adjust and balance emotions
     if(weight_nice > 1):
         weight_nice = 0.9
@@ -302,6 +313,9 @@ def say(response):
     
     
     print(response)
+    tts = Polly('Joanna')
+    tts.say(response)
+
     # TTS here
 
 
@@ -333,18 +347,45 @@ def clientthread(conn,addressList):
             chatback(data)
 
 while True:
+    global weight_nice, weight_sassy, weight_rude, delta
+    global PERMANENT_NICE, PERMANENT_SASSY, PERMANENT_RUDE, PERMANENT_DYNAMIC
 #Accept connections
-    cursor.execute("SELECT text, MAX(id) FROM Speech2Text;")
-    record = cursor.fetchone()
-    tts_input = record[0]
-    if tts_input is None:
-        do_nothing = 0
-
-    conn, address = server_socket.accept()
-    print("Connected to client at ", address)
-    clients.add(conn)
-#Creat new thread for client connections
-    _thread.start_new_thread(clientthread,(conn,addressList))
+    if(first_startup == 0):
+        weight_nice = 0
+        weight_sassy = 0
+        weight_rude = 0
+        delta = 0.1
+        PERMANENT_NICE = 0 # Input these from settings file
+        PERMANENT_SASSY = 0
+        PERMANENT_RUDE = 0
+        PERMANENT_DYNAMIC = 0
+        first_startup = 1
+        input_tracker = 0
+        tts_old = ''
+    else:
+        cursor.execute("SELECT text, MAX(id) FROM Speech2Text;")
+        record = cursor.fetchone()
+        tts_input = record[0]
+        if tts_input is None:
+            do_nothing = 0
+        elif(tts_input == tts_old):
+            do_nothing = 0
+        elif(hex(id(tts_input)) == hex(id(tts_old))):
+            do_nothing = 0
+        else:
+            input_tracker = input_tracker + 1
+            tts_old = tts_input
+            
+            print(tts_input)
+            chatback(tts_input)
+        #conn, address = server_socket.accept()
+        #print("Connected to client at ", address)
+        #clients.add(conn)
+    #Creat new thread for client connections
+        #_thread.start_new_thread(clientthread,(conn,addressList))
+        
+        #chatback('tell me a joke')
+        
 
 conn.close()
 sock.close()
