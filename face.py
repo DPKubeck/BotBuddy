@@ -15,8 +15,8 @@ clockPinR = 23       # SH_CP Pin of 74HC595(Pin11)
 #matrix-to-binary converter http://xlr8.at/8x8hexbin/
 nice = [0x00,0x18,0x24,0x42,0x42,0x42,0x42,0x00]  # data of nice face
 heart = [0x66, 0xff, 0xff, 0xff, 0x7e, 0x3c, 0x18, 0x0]
-aangryR = [0x00,0x0f,0x3f,0x7e,0xfc,0x78,0x30,0x00]
-aangryL = [0x00,0xf0,0xfc,0x7e,0x3f,0x1e,0xf3,0x00]
+aangryR = [0x0, 0xf, 0x3f, 0x7e, 0xfc, 0x78, 0x30, 0x0]
+aangryL = [0x0, 0xf0, 0xfc, 0x7e, 0x3f, 0x1e, 0xc, 0x0]
 angryR = [0xe, 0x11, 0x21, 0x59, 0x99, 0x81, 0x42, 0x3c]
 angryL = [0x70, 0x88, 0x84, 0x9a, 0x99, 0x81, 0x42, 0x3c]
 sassyL = [0x00, 0x30, 0x18, 0xe, 0x1c, 0x30, 0x60, 0x00]
@@ -101,8 +101,8 @@ def rowEyes():  # rolling the eyes once which last one second.
             for i in range(0,8):
                 GPIO.output(latchPinL,GPIO.LOW)
                 GPIO.output(latchPinR,GPIO.LOW)
-                shiftOut(dataPinL,clockPinL,MSBFIRST,rollEyes1[k][i]) #first shift data of line information to first stage 74HC959
-                shiftOut(dataPinR,clockPinR,MSBFIRST,rollEyes1[k][i])
+                shiftOut(dataPinL,clockPinL,MSBFIRST,rollEyes[k][i]) #first shift data of line information to first stage 74HC959
+                shiftOut(dataPinR,clockPinR,MSBFIRST,rollEyes[k][i])
 
                 shiftOut(dataPinL,clockPinL,MSBFIRST,~x) #then shift data of column information to second stage 74HC959
                 shiftOut(dataPinR,clockPinR,MSBFIRST,~x)
