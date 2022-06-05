@@ -76,35 +76,22 @@ def shiftOut(dPin,cPin,order,val):
             GPIO.output(dPin,(0x80&(val<<i)==0x80) and GPIO.HIGH or GPIO.LOW)
         GPIO.output(cPin,GPIO.HIGH);
 
-# def loop():
-#     while True:
-#     	for j in range(0,500): # Repeat enough times to display the smiling face a period of time
-#             x=0x80
-#             for i in range(0,8):
-#                 GPIO.output(latchPin,GPIO.LOW)
-#                 shiftOut(dataPin,clockPin,pic[i]) #first shift data of line information to first stage 74HC959
-
-#                 shiftOut(dataPin,clockPin,MSBFIRST,~x) #then shift data of column information to second stage 74HC959
-#                 GPIO.output(latchPin,GPIO.HIGH) # Output data of two stage 74HC595 at the same time
-#                 time.sleep(0.001) # display the next column
-
-
 def static(eyeL,eyeR):
-    while True:
-        for j in range(0,100): # Repeat enough times to display the smiling face a period of time
-            x=0x80
-            for i in range(0,8):
-                GPIO.output(latchPinL,GPIO.LOW)
-                GPIO.output(latchPinR,GPIO.LOW)
-                shiftOut(dataPinL,clockPinL,MSBFIRST,eyeL[i]) #first shift data of line information to first stage 74HC959
-                shiftOut(dataPinR,clockPinR,MSBFIRST,eyeR[i])
 
-                shiftOut(dataPinL,clockPinL,MSBFIRST,~x) #then shift data of column information to second stage 74HC959
-                shiftOut(dataPinR,clockPinR,MSBFIRST,~x)
-                GPIO.output(latchPinL,GPIO.HIGH) # Output data of two stage 74HC595 at the same time
-                GPIO.output(latchPinR,GPIO.HIGH)
-                time.sleep(0.001) # display the next column
-                x>>=1
+    for j in range(0,200): # Repeat enough times to display the smiling face a period of time
+        x=0x80
+        for i in range(0,8):
+            GPIO.output(latchPinL,GPIO.LOW)
+            GPIO.output(latchPinR,GPIO.LOW)
+            shiftOut(dataPinL,clockPinL,MSBFIRST,eyeL[i]) #first shift data of line information to first stage 74HC959
+            shiftOut(dataPinR,clockPinR,MSBFIRST,eyeR[i])
+
+            shiftOut(dataPinL,clockPinL,MSBFIRST,~x) #then shift data of column information to second stage 74HC959
+            shiftOut(dataPinR,clockPinR,MSBFIRST,~x)
+            GPIO.output(latchPinL,GPIO.HIGH) # Output data of two stage 74HC595 at the same time
+            GPIO.output(latchPinR,GPIO.HIGH)
+            time.sleep(0.001) # display the next column
+            x>>=1
 
 def rowEyes():  # rolling the eyes once which last one second.
     
@@ -193,6 +180,18 @@ if __name__ == '__main__':  # Program entrance
     print ('Program is starting...' )
     setup() 
     try:
-        loop(angryL,angryR)  
+        static(nice,nice)
+        static(heart,heart)
+        static(aangryL,aangryR)
+        static(angryL,angryR)
+        static(sassyL,sassyR)
+        lookAside(2,eyeRight)
+        lookAside(2,eyeLeft)
+        rowEyes()
+
+
+
+
+
     except KeyboardInterrupt:   # Press ctrl-c to end the program.
         destroy()  
